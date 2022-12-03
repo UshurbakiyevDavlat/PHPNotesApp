@@ -1,2 +1,3 @@
 # Native_PHP_framework
-native mvc php framework for studying
+Native mvc php framework project for my lessons.
+
