@@ -3,26 +3,22 @@
 class Database
 {
     private $statement;
-    private $dsn;
-    private $username;
-    private $password;
-    private $fetchOptions;
+    private $pdo;
 
     public function __construct($config, $statement,$fetchOptions ,$username = 'root', $password = '')
     {
-        $this->dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql
-        $this->username = $username; //username data
-        $this->password = $password; //password data
+        $dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql
         $this->statement = $statement; // query initialization
-        $this->fetchOptions = $fetchOptions; // fetch options
+        $this->pdo = new PDO($dsn, $username, $password, $fetchOptions ); // make an instance of pdo that connect us to mysql
     }
 
-    public function query()
+    public function query($params)
     {
-        // connection to Mysql by PDO, will be refactored, but for first lesson let it go this way
+        // connection to Mysql by PDO
 
-        $pdo = new PDO($this->dsn, $this->username, $this->password, $this->fetchOptions ); // make an instance of pdo that connect us to mysql
+        $statement = $this->pdo->prepare($this->statement); // prepare and execute query with help of pdo
+        $statement->execute($params);
 
-        return $pdo->query($this->statement); // prepare and execute query with help of pdo
+        return $statement;
     }
 }
