@@ -2,13 +2,13 @@
 
 $heading = 'Notes';
 $config = Config::env();
-
+$currentUserId = 1;
 
 $queryParams = [
-    'id' => $_GET['id'] ?? null
+    'user' => $currentUserId
 ];
 
-$statement = 'SELECT * FROM notes'; // write a sql query
+$statement = 'SELECT * FROM notes where user_id = :user '; // write a sql query
 
 $fetchOptions = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // fetch option
