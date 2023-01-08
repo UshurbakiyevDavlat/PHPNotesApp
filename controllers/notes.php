@@ -17,6 +17,6 @@ $fetchOptions = [
 $db = new Database($config['database'], $statement, $fetchOptions);
 $connection = $db->query($queryParams);
 
-$notes = $connection->fetchAll(); // fetching all results in associative array format
+$notes = $connection->get(); // fetching all results in associative array format
 
 require 'views/notes.view.php';

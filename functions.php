@@ -6,7 +6,14 @@ function dd($value)
     die();
 }
 
-function urlIs($uri)
+function urlIs($uri): bool
 {
     return $uri === $_SERVER['REQUEST_URI'];
+}
+
+function authorize($condition, $statusCode = Response::FORBIDDEN)
+{
+    if ($condition) {
+        abort($statusCode);
+    }
 }

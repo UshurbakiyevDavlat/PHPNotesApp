@@ -17,14 +17,7 @@ $fetchOptions = [
 $db = new Database($config['database'], $statement, $fetchOptions);
 $connection = $db->query($queryParams);
 
-$note = $connection->fetch(); // fetching all results in associative array format
-
-if (!$note) {
-    abort();
-}
-
-if ($note['user_id'] != $currentUserId) {
-    abort(Response::FORBIDDEN);
-}
+$note = $connection->findOrFail(); // fetching all results in associative array format
+authorize((int)$note['user_id'] !== $currentUserId);
 
 require 'views/note.view.php';
