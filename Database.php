@@ -5,7 +5,7 @@ class Database
     private $statement;
     private $pdo;
 
-    public function __construct($config, $statement, $fetchOptions, $username = 'root', $password = '')
+    public function __construct($config, $statement, $fetchOptions = null, $username = 'root', $password = '')
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql
         $this->statement = $statement; // query initialization
