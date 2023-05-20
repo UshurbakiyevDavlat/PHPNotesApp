@@ -1,6 +1,6 @@
 <?php
 
-require('Validator.php');
+require(__DIR__ .'/../../../helpers/Validator.php');
 
 $config = Config::env();
 $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
@@ -29,4 +29,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require 'views/notes/create.view.php';
+require __DIR__ . '/../../../resources/views/notes/create.view.php';

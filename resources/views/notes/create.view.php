@@ -1,6 +1,4 @@
-<?php require('views/partials/head.php') ?>
-<?php require('views/partials/nav.php') ?>
-<?php require('views/partials/banner.php') ?>
+<?php require( __DIR__ .'/../partials/head.php') ?>
 
 <main>
     <form class="m-6" method="POST">
@@ -38,4 +36,4 @@
     </form>
 </main>
 
-<?php include('views/partials/footer.php'); ?>
+<?php require(__DIR__ .'/../partials/footer.php') ?>

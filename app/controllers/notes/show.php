@@ -20,4 +20,4 @@ $connection = $db->query($queryParams);
 $note = $connection->findOrFail(); // fetching all results in associative array format
 authorize((int)$note['user_id'] !== $currentUserId);
 
-require 'views/notes/show.view.php';
+require __DIR__ . '/../../../resources/views/notes/show.view.php';

@@ -1,3 +1,6 @@
+<?php require(__DIR__ .'/../partials/nav.php') ?>
+<?php require(__DIR__ .'/../partials/banner.php') ?>
+
 <!doctype html>
 <html lang="en" class="h-full bg-gray-100">
 <head>
