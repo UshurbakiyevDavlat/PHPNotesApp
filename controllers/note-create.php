@@ -9,11 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
     $body = $data['body'];
 
-    if (!Validator::string($body, 10, 1000)) {
-        $errors [] = 'The note body is required.';
-        $errors[] = 'The note body must be at least 10 characters.';
-        $errors[] = 'The note body must be less than 1000 characters.';
-    }
+    $errors = Validator::string($body, 10, 1000);
 
     if (empty($errors)) {
         $query_params = [
