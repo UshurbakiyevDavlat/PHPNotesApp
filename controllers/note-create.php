@@ -1,4 +1,5 @@
 <?php
+require('Validator.php');
 
 $config = Config::env();
 $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
@@ -6,17 +7,11 @@ $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     $data = $_POST;
-    $body = trim($data['body']);
+    $body = $data['body'];
 
-    if (empty($body)) {
+    if (!Validator::string($body, 10, 1000)) {
         $errors [] = 'The note body is required.';
-    }
-
-    if (strlen($body) < 10) {
-        $errors[] = 'The note body must be at least 10 characters. You have entered ' . strlen($body) . ' characters.';
-    }
-
-    if (strlen($body) > 1000) {
+        $errors[] = 'The note body must be at least 10 characters.';
         $errors[] = 'The note body must be less than 1000 characters.';
     }
 
