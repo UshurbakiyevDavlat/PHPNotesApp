@@ -1,4 +1,5 @@
 <?php
+
 require('Validator.php');
 
 $config = Config::env();
@@ -11,13 +12,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $errors = Validator::string($body, 10, 1000);
 
-    if (empty($errors)) {
+    if ($errors['errors'] === '') {
         $query_params = [
             'body' => $body,
             'user_id' => 1
         ];
 
         $db = new Database($config['database'], $statement);
+
         try {
             $db->query($query_params);
             $result = 'Note created successfully.';
@@ -27,4 +29,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require 'views/note-create.view.php';
+require 'views/notes/create.view.php';

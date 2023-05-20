@@ -19,4 +19,4 @@ $connection = $db->query($queryParams);
 
 $notes = $connection->get(); // fetching all results in associative array format
 
-require 'views/notes.view.php';
+require 'views/notes/index.view.php';
