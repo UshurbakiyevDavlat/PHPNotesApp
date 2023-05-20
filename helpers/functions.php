@@ -1,8 +1,9 @@
 <?php
 
-use Response\Response;
+use App\Response\Response;
+use JetBrains\PhpStorm\NoReturn;
 
-function dd($value)
+#[NoReturn] function dd($value): void
 {
     var_dump($value);
     die();
@@ -13,14 +14,14 @@ function urlIs($uri): bool
     return $uri === $_SERVER['REQUEST_URI'];
 }
 
-function authorize($condition, $statusCode = Response::FORBIDDEN)
+function authorize($condition, $statusCode = Response::FORBIDDEN): void
 {
     if ($condition) {
         abort($statusCode);
     }
 }
 
-function routeToController($uri, $routes)
+function routeToController($uri, $routes): void
 {
     if (array_key_exists($uri, $routes)) {
         require base_path($routes[$uri]);

@@ -4,11 +4,10 @@ const BASE_PATH = __DIR__ . '/../';
 
 spl_autoload_register(static function ($class) {
     // Replace backslashes with forward slashes
-    $namespace = explode('\\',$class);
-    $class = str_replace(['\\', $namespace[0].'/'], ['/', ''], $class); // Remove Namespace/ from the path
+    $namespace = explode('\\', $class);
+    $class = array_pop($namespace);
+    $class = str_replace(['\\'], ['/'], $class);
     $class = strtolower($class); // Convert class name to lowercase
-
-    // Define the base directory where your classes are located
 
     // Define the directories to search for classes
     $directories = [
@@ -16,7 +15,7 @@ spl_autoload_register(static function ($class) {
         'routes',
         'config',
         'database',
-        'enums'
+        'app/enums'
     ];
 
     foreach ($directories as $directory) {
