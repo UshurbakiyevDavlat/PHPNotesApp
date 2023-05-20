@@ -1,5 +1,8 @@
 <?php
 
+use Config\Config;
+use Database\Database;
+
 $heading = 'Notes';
 $config = Config::getConfig();
 $currentUserId = 1;

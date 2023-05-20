@@ -1,5 +1,5 @@
-<?php require(__DIR__ .'/../partials/nav.php') ?>
-<?php require(__DIR__ .'/../partials/banner.php') ?>
+<?php require(base_path('resources/views/partials/nav.php')) ?>
+<?php require(base_path('resources/views/partials/banner.php')) ?>
 
 <!doctype html>
 <html lang="en" class="h-full bg-gray-100">

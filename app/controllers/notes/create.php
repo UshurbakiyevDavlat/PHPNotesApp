@@ -1,9 +1,13 @@
 <?php
 
+use Config\Config;
+use Database\Database;
+use Validator\Validator;
+
 $config = Config::getConfig();
 $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
 $errors = [];
-$body = [];
+$body = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;

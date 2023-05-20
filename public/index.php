@@ -3,7 +3,9 @@
 const BASE_PATH = __DIR__ . '/../';
 
 spl_autoload_register(static function ($class) {
-    $class = str_replace('\\', '/', $class); // Replace backslashes with forward slashes
+    // Replace backslashes with forward slashes
+    $namespace = explode('\\',$class);
+    $class = str_replace(['\\', $namespace[0].'/'], ['/', ''], $class); // Remove Namespace/ from the path
     $class = strtolower($class); // Convert class name to lowercase
 
     // Define the base directory where your classes are located

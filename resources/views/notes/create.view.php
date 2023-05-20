@@ -1,4 +1,4 @@
-<?php require( __DIR__ .'/../partials/head.php') ?>
+<?php require( base_path('resources/views/partials/head.php')) ?>
 
 <main>
     <form class="m-6" method="POST">
@@ -36,4 +36,4 @@
     </form>
 </main>
 
-<?php require(__DIR__ .'/../partials/footer.php') ?>
+<?php require(base_path('resources/views/partials/footer.php')) ?>

@@ -1,5 +1,7 @@
 <?php
 
+namespace Validator;
+
 class Validator
 {
     public static function string($str, $min = 1, $max = 255): array

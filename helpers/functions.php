@@ -1,5 +1,7 @@
 <?php
 
+use Response\Response;
+
 function dd($value)
 {
     var_dump($value);
