@@ -1,5 +1,4 @@
 <?php
 
 $heading = 'Index';
-
-require __DIR__ . '/../../resources/views/index.view.php';
+return view('index', compact('heading'));

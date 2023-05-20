@@ -1,7 +1,7 @@
 <?php
 
 $heading = 'Notes';
-$config = Config::env();
+$config = Config::getConfig();
 $currentUserId = 1;
 
 $queryParams = [
@@ -19,4 +19,4 @@ $connection = $db->query($queryParams);
 
 $notes = $connection->get(); // fetching all results in associative array format
 
-require __DIR__ . '/../../../resources/views/notes/index.view.php';
+return view('notes/index', compact('heading', 'notes'));

@@ -25,7 +25,6 @@ function routeToController($uri, $routes)
     } else {
         abort();
     }
-
 }
 
 function abort($code = Response::NOT_FOUND)
@@ -35,4 +34,15 @@ function abort($code = Response::NOT_FOUND)
     require 'views/errors/' . $code . 'php';
 
     die();
+}
+
+function base_path($path = ''): string
+{
+    return BASE_PATH . $path;
+}
+
+function view($view, $data = [])
+{
+    extract($data, EXTR_SKIP);
+    return require base_path( "resources/views/{$view}.view.php");
 }

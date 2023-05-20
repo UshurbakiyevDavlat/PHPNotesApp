@@ -1,7 +1,7 @@
 <?php
 
 $heading = 'Note';
-$config = Config::env();
+$config = Config::getConfig();
 $currentUserId = 1;
 
 $queryParams = [
@@ -20,4 +20,4 @@ $connection = $db->query($queryParams);
 $note = $connection->findOrFail(); // fetching all results in associative array format
 authorize((int)$note['user_id'] !== $currentUserId);
 
-require __DIR__ . '/../../../resources/views/notes/show.view.php';
+return view('notes/show', compact('heading', 'note'));

@@ -1,12 +1,11 @@
 <?php
 
-require(__DIR__ .'/../../../helpers/Validator.php');
-
-$config = Config::env();
+$config = Config::getConfig();
 $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
+$errors = [];
+$body = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $errors = [];
     $data = $_POST;
     $body = $data['body'];
 
@@ -29,4 +28,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require __DIR__ . '/../../../resources/views/notes/create.view.php';
+return view('notes/create', compact('errors', 'body'));

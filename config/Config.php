@@ -2,7 +2,7 @@
 
 class Config
 {
-    public static function env(): array
+    public static function getConfig(): array
     {
         return [
             'database' => [
