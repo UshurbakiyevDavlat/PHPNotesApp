@@ -46,4 +46,12 @@ class Database
     {
         return $this->find()->fetchAll();
     }
+
+    public static function execute($config, $statement, $queryParams): Database
+    {
+        $fetchOptions = [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // fetch option
+        ];
+        return (new Database($config['database'], $statement, $fetchOptions))->query($queryParams);
+    }
 }
