@@ -1,5 +1,7 @@
 <?php
 
+use Helpers\Router\Router;
+
 const BASE_PATH = __DIR__ . '/../';
 
 spl_autoload_register(static function ($class) {
@@ -28,4 +30,13 @@ spl_autoload_register(static function ($class) {
 });
 
 require BASE_PATH . 'helpers/functions.php';
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$uri = trim(str_replace('/public', '', $uri), ' ');
+
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+$router = new Router();
+
 require base_path('routes/web.php');
+$router->route($uri, $method);
+

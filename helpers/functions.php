@@ -21,15 +21,6 @@ function authorize($condition, $statusCode = Response::FORBIDDEN): void
     }
 }
 
-function routeToController($uri, $routes): void
-{
-    if (array_key_exists($uri, $routes)) {
-        require base_path($routes[$uri]);
-    } else {
-        abort(404);
-    }
-}
-
 function abort($code = Response::NOT_FOUND)
 {
     http_response_code($code);

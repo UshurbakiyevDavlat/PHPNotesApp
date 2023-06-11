@@ -1,14 +1,13 @@
 <?php
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$router->get('/', 'app/controllers/index.php');
+$router->get('/about', 'app/controllers/about.php');
+$router->get('/contact', 'app/controllers/contact.php');
+$router->get('/notes', 'app/controllers/notes/index.php');
 
-$routes = [
-    '/' => 'app/controllers/index.php',
-    '/about' => 'app/controllers/about.php',
-    '/contact' => 'app/controllers/contact.php',
-    '/notes' => 'app/controllers/notes/index.php',
-    '/note' => 'app/controllers/notes/show.php',
-    '/note-create' => 'app/controllers/notes/create.php',
-];
+$router->get('/note', 'app/controllers/notes/show.php');
+$router->delete('/note', 'app/controllers/notes/show.php');
 
-routeToController($uri, $routes);
+$router->get('/note-create', 'app/controllers/notes/create.php');
+$router->post('/note-create', 'app/controllers/notes/create.php');
+
