@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Enums\MethodsEnum;
+namespace App\Enums;
 
 final class MethodsEnum
 {

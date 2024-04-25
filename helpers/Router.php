@@ -2,7 +2,7 @@
 
 namespace Helpers\Router;
 
-use App\Enums\MethodsEnum\MethodsEnum;
+use App\Enums\MethodsEnum;
 
 class Router
 {

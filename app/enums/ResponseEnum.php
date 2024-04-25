@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums\ResponseEnum;
+namespace App\Enums;
 
 final class ResponseEnum
 {
