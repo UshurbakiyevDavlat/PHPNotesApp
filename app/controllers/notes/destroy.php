@@ -3,7 +3,14 @@
 use Config\Config;
 use Database\Database;
 
-function deleteNote($config, $id): void
+/**
+ * Delete note function
+ *
+ * @param array $config
+ * @param int $id
+ * @return void
+ */
+function deleteNote(array $config, int $id): void
 {
     $statement = 'DELETE FROM notes WHERE id = :id';
     $queryParams = [

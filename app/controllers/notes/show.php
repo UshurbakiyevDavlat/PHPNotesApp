@@ -3,7 +3,15 @@
 use Config\Config;
 use Database\Database;
 
-function getNote($config, $id)
+/**
+ * Get note function
+ *
+ * @param array $config
+ * @param int $id
+ *
+ * @return mixed
+ */
+function getNote(array $config, int $id): mixed
 {
     $statement = 'SELECT * FROM notes WHERE id = :id';
     $queryParams = [
@@ -13,6 +21,13 @@ function getNote($config, $id)
     return Database::execute($config, $statement, $queryParams)->findOrFail();
 }
 
+/**
+ * Check access function
+ *
+ * @param $note
+ * @param $currentUserId
+ * @return void
+ */
 function checkIfNoteBelongsToUser($note, $currentUserId): void
 {
     authorize((int)$note['user_id'] !== $currentUserId);
