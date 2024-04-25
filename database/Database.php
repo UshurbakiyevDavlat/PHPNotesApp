@@ -79,16 +79,16 @@ class Database
     /**
      * Execute db query method
      *
-     * @param $config
-     * @param $statement
-     * @param $queryParams
+     * @param array $config
+     * @param string $statement
+     * @param array $queryParams
      * @return Database
      */
-    public static function execute($config, $statement, $queryParams): Database
+    public static function execute(array $config, string $statement, array $queryParams): Database
     {
         $fetchOptions = [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // fetch option
         ];
-        return (new Database($config['database'], $statement, $fetchOptions))->query($queryParams);
+        return (new Database($config, $statement, $fetchOptions))->query($queryParams);
     }
 }

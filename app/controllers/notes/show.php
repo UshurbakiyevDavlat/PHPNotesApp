@@ -38,7 +38,7 @@ $heading = 'Note';
 $currentUserId = 1;
 $note_id = $_GET['id'];
 
-$note = getNote(Config::getConfig(), $note_id);
+$note = getNote(Config::getConfig()['database'], $note_id);
 checkIfNoteBelongsToUser($note, $currentUserId);
 
 return view('notes/show', compact('heading', 'note'));

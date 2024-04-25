@@ -7,7 +7,6 @@ use Validator\Validator;
 $body = $_POST['body'];
 
 $errors = Validator::string($body, 10, 1000);
-$config = Config::getConfig();
 $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
 
 if ($errors['errors'] === '') {
@@ -16,7 +15,7 @@ if ($errors['errors'] === '') {
         'user_id' => 1
     ];
 
-    $db = new Database($config['database'], $statement);
+    $db = new Database(Config::getConfig()['database'], $statement);
 
     try {
         $db->query($query_params);

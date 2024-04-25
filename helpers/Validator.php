@@ -7,12 +7,12 @@ class Validator
     /**
      * Validate string rule
      *
-     * @param $str
+     * @param string $str
      * @param int $min
      * @param int $max
      * @return string[]
      */
-    public static function string($str, int $min = 1, int $max = 255): array
+    public static function string(string $str, int $min = 1, int $max = 255): array
     {
         $str = trim($str);
         $result = [
@@ -38,10 +38,10 @@ class Validator
     /**
      * Validate email rule function
      *
-     * @param $email
+     * @param string $email
      * @return bool
      */
-    public function email($email): bool
+    public function email(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }

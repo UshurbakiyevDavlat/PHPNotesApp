@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($router)) {
+    die('Router has not set properly!');
+}
+
 $router->get('/', 'app/controllers/index.php');
 $router->get('/about', 'app/controllers/about.php');
 $router->get('/contact', 'app/controllers/contact.php');

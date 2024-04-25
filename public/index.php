@@ -38,5 +38,11 @@ $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 $router = new Router();
 
 require base_path('routes/web.php');
-$router->route($uri, $method);
+
+try {
+    $router->route($uri, $method);
+} catch (Exception $exception) {
+    error_reporting(1);
+    die($exception->getMessage());
+}
 

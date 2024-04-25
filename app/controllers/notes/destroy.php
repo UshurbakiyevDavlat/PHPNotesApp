@@ -22,6 +22,6 @@ function deleteNote(array $config, int $id): void
 
 $note_id = $_POST['id'];
 
-deleteNote(Config::getConfig(), $note_id);
+deleteNote(Config::getConfig()['database'], $note_id);
 header('Location: /notes');
 exit;

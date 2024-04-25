@@ -9,11 +9,11 @@ class Router
     /**
      * Get function
      *
-     * @param $uri
-     * @param $controller
+     * @param string $uri
+     * @param string $controller
      * @return void
      */
-    public function get($uri, $controller): void
+    public function get(string $uri, string $controller): void
     {
         $this->add($uri, $controller, 'GET');
     }
@@ -21,11 +21,11 @@ class Router
     /**
      * Post function
      *
-     * @param $uri
-     * @param $controller
+     * @param string $uri
+     * @param string $controller
      * @return void
      */
-    public function post($uri, $controller): void
+    public function post(string $uri, string $controller): void
     {
         $this->add($uri, $controller, 'POST');
     }
@@ -33,11 +33,11 @@ class Router
     /**
      * Put function
      *
-     * @param $uri
-     * @param $controller
+     * @param string $uri
+     * @param string $controller
      * @return void
      */
-    public function put($uri, $controller): void
+    public function put(string $uri, string $controller): void
     {
         $this->add($uri, $controller, 'PUT');
     }
@@ -45,11 +45,11 @@ class Router
     /**
      * Delete function
      *
-     * @param $uri
-     * @param $controller
+     * @param string $uri
+     * @param string $controller
      * @return void
      */
-    public function delete($uri, $controller): void
+    public function delete(string $uri, string $controller): void
     {
         $this->add($uri, $controller, 'DELETE');
     }
@@ -57,11 +57,11 @@ class Router
     /**
      * Require route function
      *
-     * @param $uri
-     * @param $method
+     * @param string $uri
+     * @param string $method
      * @return void
      */
-    public function route($uri, $method): void
+    public function route(string $uri, string $method): void
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
@@ -75,12 +75,12 @@ class Router
     /**
      * Add route function
      *
-     * @param $uri
-     * @param $controller
-     * @param $method
+     * @param string $uri
+     * @param string $controller
+     * @param string $method
      * @return void
      */
-    private function add($uri, $controller, $method): void
+    private function add(string $uri, string $controller, string $method): void
     {
         $this->routes[] = compact('uri', 'controller', 'method');
     }
