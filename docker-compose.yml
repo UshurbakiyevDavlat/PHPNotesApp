@@ -5,7 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: app-native-laracast
+        container_name: app-native-note
         restart: unless-stopped
         user: root
         volumes:
@@ -25,7 +25,7 @@ services:
         build:
             context: ./nginx
             dockerfile: Dockerfile
-        container_name: nginx-native-laracast
+        container_name: nginx-native-note
         restart: unless-stopped
         ports:
             - "8000:80"
@@ -54,7 +54,7 @@ services:
             options:
                 max-size: '10m'
                 max-file: '10'
-        container_name: db-native-laracast
+        container_name: db-native-note
         networks:
             - app_native_network
 
