@@ -9,7 +9,7 @@ class Config
             'database' => [
                 'host' => 'localhost',
                 'port' => '3306',
-                'dbname' => 'php_native_framework',
+                'dbname' => 'native',
                 'charset' => 'utf8mb4'
             ],
         ];
