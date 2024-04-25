@@ -5,11 +5,8 @@ use Helpers\Router\Router;
 const BASE_PATH = __DIR__ . '/../';
 
 spl_autoload_register(static function ($class) {
-    // Replace backslashes with forward slashes
     $namespace = explode('\\', $class);
-    $class = array_pop($namespace);
-    $class = str_replace(['\\'], ['/'], $class);
-    $class = strtolower($class); // Convert class name to lowercase
+    $class = strtolower(str_replace(['\\'], ['/'], array_pop($namespace)));
 
     // Define the directories to search for classes
     $directories = [
@@ -31,8 +28,14 @@ spl_autoload_register(static function ($class) {
 
 require BASE_PATH . 'helpers/functions.php';
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-$uri = trim(str_replace('/public', '', $uri), ' ');
+$uri = trim(
+    str_replace(
+        '/public',
+        '',
+        parse_url($_SERVER['REQUEST_URI'])['path']
+    ),
+    ' '
+);
 
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 $router = new Router();

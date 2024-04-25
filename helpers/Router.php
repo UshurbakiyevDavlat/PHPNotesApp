@@ -2,6 +2,8 @@
 
 namespace Helpers\Router;
 
+use App\Response\MethodsEnum;
+
 class Router
 {
     protected array $routes = [];
@@ -15,7 +17,7 @@ class Router
      */
     public function get(string $uri, string $controller): void
     {
-        $this->add($uri, $controller, 'GET');
+        $this->add($uri, $controller, MethodsEnum::HTTP_GET);
     }
 
     /**
@@ -27,7 +29,7 @@ class Router
      */
     public function post(string $uri, string $controller): void
     {
-        $this->add($uri, $controller, 'POST');
+        $this->add($uri, $controller, MethodsEnum::HTTP_POST);
     }
 
     /**
@@ -39,7 +41,7 @@ class Router
      */
     public function put(string $uri, string $controller): void
     {
-        $this->add($uri, $controller, 'PUT');
+        $this->add($uri, $controller, MethodsEnum::HTTP_PUT);
     }
 
     /**
@@ -51,7 +53,7 @@ class Router
      */
     public function delete(string $uri, string $controller): void
     {
-        $this->add($uri, $controller, 'DELETE');
+        $this->add($uri, $controller, MethodsEnum::HTTP_DELETE);
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-use App\Response\Response;
+use App\Response\ResponseEnum;
 use JetBrains\PhpStorm\NoReturn;
 
 /**
@@ -33,7 +33,7 @@ function urlIs($uri): bool
  * @param int $statusCode
  * @return void
  */
-function authorize($condition, int $statusCode = Response::FORBIDDEN): void
+function authorize($condition, int $statusCode = ResponseEnum::FORBIDDEN): void
 {
     if ($condition) {
         abort($statusCode);
@@ -46,7 +46,7 @@ function authorize($condition, int $statusCode = Response::FORBIDDEN): void
  * @param int $code
  * @return mixed
  */
-function abort(int $code = Response::NOT_FOUND): mixed
+function abort(int $code = ResponseEnum::NOT_FOUND): mixed
 {
     http_response_code($code);
     return require view('errors/' . $code);

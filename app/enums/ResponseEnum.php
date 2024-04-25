@@ -2,7 +2,7 @@
 
 namespace App\Response;
 
-class Response
+final class ResponseEnum
 {
     public const NOT_FOUND = 404;
     public const FORBIDDEN = 403;
