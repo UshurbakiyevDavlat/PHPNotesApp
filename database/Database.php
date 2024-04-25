@@ -6,16 +6,28 @@ use PDO;
 
 class Database
 {
-    private $statement;
+    private mixed $statement;
     private PDO $pdo;
 
-    public function __construct($config, $statement, $fetchOptions = null, $username = 'root', $password = '')
+    public function __construct(
+        $config,
+        $statement,
+        $fetchOptions = null,
+        $username = 'root',
+        $password = '',
+    )
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql
         $this->statement = $statement; // query initialization
         $this->pdo = new PDO($dsn, $username, $password, $fetchOptions); // make an instance of pdo that connect us to mysql
     }
 
+    /**
+     * Executive query method
+     *
+     * @param $params
+     * @return $this
+     */
     public function query($params): Database
     {
         // connection to Mysql by PDO
@@ -26,12 +38,22 @@ class Database
         return $this;
     }
 
-    public function find()
+    /**
+     * Find record method
+     *
+     * @return mixed
+     */
+    public function find(): mixed
     {
         return $this->statement;
     }
 
-    public function findOrFail()
+    /**
+     * Find record or fail
+     *
+     * @return mixed
+     */
+    public function findOrFail(): mixed
     {
         $result = $this->statement->fetch();
 
@@ -42,11 +64,24 @@ class Database
         return $result;
     }
 
-    public function get()
+    /**
+     * Get collection method
+     *
+     * @return mixed
+     */
+    public function get(): mixed
     {
         return $this->find()->fetchAll();
     }
 
+    /**
+     * Execute db query method
+     *
+     * @param $config
+     * @param $statement
+     * @param $queryParams
+     * @return Database
+     */
     public static function execute($config, $statement, $queryParams): Database
     {
         $fetchOptions = [

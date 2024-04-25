@@ -3,6 +3,11 @@ namespace Config;
 
 class Config
 {
+    /**
+     * Get config method
+     *
+     * @return array[]
+     */
     public static function getConfig(): array
     {
         return [

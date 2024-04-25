@@ -4,7 +4,15 @@ namespace Validator;
 
 class Validator
 {
-    public static function string($str, $min = 1, $max = 255): array
+    /**
+     * Validate string rule
+     *
+     * @param $str
+     * @param int $min
+     * @param int $max
+     * @return string[]
+     */
+    public static function string($str, int $min = 1, int $max = 255): array
     {
         $str = trim($str);
         $result = [
@@ -27,6 +35,12 @@ class Validator
         return $result;
     }
 
+    /**
+     * Validate email rule function
+     *
+     * @param $email
+     * @return bool
+     */
     public function email($email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
