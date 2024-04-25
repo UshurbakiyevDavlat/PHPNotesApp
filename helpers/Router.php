@@ -4,7 +4,7 @@ namespace Helpers\Router;
 
 class Router
 {
-    protected $routes = [];
+    protected array $routes = [];
 
     public function get($uri, $controller): void
     {

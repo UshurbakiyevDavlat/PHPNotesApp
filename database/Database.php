@@ -7,7 +7,7 @@ use PDO;
 class Database
 {
     private $statement;
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct($config, $statement, $fetchOptions = null, $username = 'root', $password = '')
     {
