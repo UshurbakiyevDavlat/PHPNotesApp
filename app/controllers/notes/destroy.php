@@ -20,9 +20,8 @@ function deleteNote(array $config, int $id): void
     Database::execute($config, $statement, $queryParams);
 }
 
-$config = Config::getConfig();
 $note_id = $_POST['id'];
 
-deleteNote($config, $note_id);
+deleteNote(Config::getConfig(), $note_id);
 header('Location: /notes');
 exit;

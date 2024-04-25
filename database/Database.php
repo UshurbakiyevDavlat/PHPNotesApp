@@ -3,10 +3,12 @@
 namespace Database;
 
 use PDO;
+use PDOStatement;
 
 class Database
 {
-    private mixed $statement;
+    private string $statement;
+    private PDOStatement $prepared;
     private PDO $pdo;
 
     public function __construct(
@@ -32,8 +34,8 @@ class Database
     {
         // connection to Mysql by PDO
 
-        $this->statement = $this->pdo->prepare($this->statement); // prepare and execute query with help of pdo
-        $this->statement->execute($params);
+        $this->prepared = $this->pdo->prepare($this->statement); // prepare and execute query with help of pdo
+        $this->prepared->execute($params);
 
         return $this;
     }
@@ -41,11 +43,11 @@ class Database
     /**
      * Find record method
      *
-     * @return mixed
+     * @return PDOStatement
      */
-    public function find(): mixed
+    public function find(): PDOStatement
     {
-        return $this->statement;
+        return $this->prepared;
     }
 
     /**
@@ -55,7 +57,7 @@ class Database
      */
     public function findOrFail(): mixed
     {
-        $result = $this->statement->fetch();
+        $result = $this->prepared->fetch();
 
         if (!$result) {
             abort();
@@ -67,9 +69,9 @@ class Database
     /**
      * Get collection method
      *
-     * @return mixed
+     * @return bool|array
      */
-    public function get(): mixed
+    public function get(): bool|array
     {
         return $this->find()->fetchAll();
     }

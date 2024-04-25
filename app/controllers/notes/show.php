@@ -34,13 +34,11 @@ function checkIfNoteBelongsToUser($note, $currentUserId): void
 }
 
 $heading = 'Note';
-$config = Config::getConfig();
 
 $currentUserId = 1;
-$method = $_SERVER['REQUEST_METHOD'];
 $note_id = $_GET['id'];
 
-$note = getNote($config, $note_id);
+$note = getNote(Config::getConfig(), $note_id);
 checkIfNoteBelongsToUser($note, $currentUserId);
 
 return view('notes/show', compact('heading', 'note'));

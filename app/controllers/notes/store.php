@@ -4,8 +4,7 @@ use Config\Config;
 use Database\Database;
 use Validator\Validator;
 
-$data = $_POST;
-$body = $data['body'];
+$body = $_POST['body'];
 
 $errors = Validator::string($body, 10, 1000);
 $config = Config::getConfig();
