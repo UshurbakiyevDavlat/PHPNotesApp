@@ -10,6 +10,7 @@ use Database\Database;
  * @param int $id
  *
  * @return mixed
+ * @throws Exception
  */
 function getNote(array $config, int $id): mixed
 {
@@ -26,6 +27,7 @@ function getNote(array $config, int $id): mixed
  *
  * @param $note
  * @param $currentUserId
+ *
  * @return void
  */
 function checkIfNoteBelongsToUser($note, $currentUserId): void
@@ -38,7 +40,12 @@ $heading = 'Note';
 $currentUserId = 1;
 $note_id = $_GET['id'];
 
-$note = getNote(Config::getConfig()['database'], $note_id);
+try {
+    $note = getNote(Config::getConfig()['database'], $note_id);
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+
 checkIfNoteBelongsToUser($note, $currentUserId);
 
 return view('notes/show', compact('heading', 'note'));

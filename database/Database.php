@@ -2,6 +2,7 @@
 
 namespace Database;
 
+use Exception;
 use PDO;
 use PDOStatement;
 
@@ -11,17 +12,24 @@ class Database
     private PDOStatement $prepared;
     private PDO $pdo;
 
+    /**
+     * @throws Exception
+     */
     public function __construct(
         $config,
         $statement,
         $fetchOptions = null,
         $username = 'root',
-        $password = '',
+        $password = 'root',
     )
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql
         $this->statement = $statement; // query initialization
-        $this->pdo = new PDO($dsn, $username, $password, $fetchOptions); // make an instance of pdo that connect us to mysql
+        try {
+            $this->pdo = new PDO($dsn, $username, $password, $fetchOptions); // make an instance of pdo that connect us to mysql
+        } catch (Exception $exception) {
+            throw new Exception($exception->getMessage());
+        }
     }
 
     /**
@@ -82,7 +90,9 @@ class Database
      * @param array $config
      * @param string $statement
      * @param array $queryParams
+     *
      * @return Database
+     * @throws Exception
      */
     public static function execute(array $config, string $statement, array $queryParams): Database
     {
