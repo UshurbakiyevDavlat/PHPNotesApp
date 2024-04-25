@@ -4,6 +4,10 @@ use Helpers\Router\Router;
 
 const BASE_PATH = __DIR__ . '/../';
 
+(new App\Controller\DotEnvEnvironment)->load(BASE_PATH);
+
+require BASE_PATH . 'helpers/functions.php';
+
 spl_autoload_register(static function ($class) {
     $namespace = explode('\\', $class);
     $class = strtolower(str_replace(['\\'], ['/'], array_pop($namespace)));
@@ -25,8 +29,6 @@ spl_autoload_register(static function ($class) {
         }
     }
 });
-
-require BASE_PATH . 'helpers/functions.php';
 
 $uri = trim(
     str_replace(

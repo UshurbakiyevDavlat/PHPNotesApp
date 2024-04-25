@@ -73,5 +73,17 @@ function base_path(string $path = ''): string
 function view($view, array $data = []): mixed
 {
     extract($data, EXTR_SKIP);
-    return require base_path( "resources/views/{$view}.view.php");
+    return require base_path("resources/views/{$view}.view.php");
+}
+
+/**
+ * Get env variable helper function
+ *
+ * @param string $variable
+ * @param string $default
+ * @return bool|array|string
+ */
+function env(string $variable, string $default): bool|array|string
+{
+    return getenv($variable) ?? $default;
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Config;
 
 class Config
@@ -12,9 +13,9 @@ class Config
     {
         return [
             'database' => [
-                'host' => 'localhost',
-                'port' => '3306',
-                'dbname' => 'native',
+                'host' => env('DB_HOST', 'localhost'),
+                'port' => env('DB_PORT', '3306'),
+                'dbname' => env('DB_NAME', 'native'),
                 'charset' => 'utf8mb4'
             ],
         ];
