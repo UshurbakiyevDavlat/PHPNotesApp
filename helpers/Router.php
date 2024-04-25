@@ -2,7 +2,7 @@
 
 namespace Helpers\Router;
 
-use App\Response\MethodsEnum;
+use App\Enums\MethodsEnum\MethodsEnum;
 
 class Router
 {
@@ -66,7 +66,11 @@ class Router
     public function route(string $uri, string $method): void
     {
         foreach ($this->routes as $route) {
-            if ($route['uri'] === $uri && $route['method'] === $method) {
+            if (
+                $route['uri'] === $uri
+                &&
+                $route['method'] === $method
+            ) {
                 $controller = $route['controller'];
                 require base_path($controller);
                 break;

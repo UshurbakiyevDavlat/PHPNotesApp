@@ -1,6 +1,6 @@
 <?php
 
-use App\Response\ResponseEnum;
+use App\Enums\ResponseEnum\ResponseEnum;
 use JetBrains\PhpStorm\NoReturn;
 
 /**
