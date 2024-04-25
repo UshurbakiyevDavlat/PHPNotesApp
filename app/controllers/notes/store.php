@@ -26,3 +26,5 @@ if ($errors['errors'] === '') {
         die($e->getMessage());
     }
 }
+
+return view('notes/create', compact('errors', 'body'));
