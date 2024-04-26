@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: app-native-note
+        restart: unless-stopped
+        user: root
+        volumes:
+            - .:/var/www/html
+            - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+            - ./docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+        networks:
+            - app_native_network
+        environment:
+            PHP_IDE_CONFIG: "serverName=Docker"
+        ports:
+            - "9001:9000"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+
+    nginx:
+        build:
+            context: ./nginx
+            dockerfile: Dockerfile
+        container_name: nginx-native-note
+        restart: unless-stopped
+        ports:
+            - "8000:80"
+            - "8444:443"
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./public:/var/www/html/public
+        depends_on:
+            - app
+        networks:
+            - app_native_network
+
+    db: # docker-compose exec db bash =>  mysql -u root -p => show databases;
+        image: mysql:latest
+        restart: always
+        volumes:
+            - ./tmp/db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_USER: 'php'
+            MYSQL_PASSWORD: 'php'
+        ports:
+            - "3307:3306"
+        logging:
+            driver: 'json-file'
+            options:
+                max-size: '10m'
+                max-file: '10'
+        container_name: db-native-note
+        networks:
+            - app_native_network
+
+
+volumes:
+    dbdata:
+
+networks:
+    app_native_network:
+        driver: bridge
+

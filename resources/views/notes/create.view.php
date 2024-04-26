@@ -1,4 +1,4 @@
-<?php require( base_path('resources/views/partials/head.php')) ?>
+<?php require(base_path('resources/views/partials/head.php')) ?>
 
 <main>
     <form class="m-6" method="POST">
@@ -15,7 +15,8 @@
                             <?php
                             if (!empty($errors)) {
                                 echo '<p class="text-red-500 text-sm mt-1">' . (implode('', $errors)) . '</p>';
-                            } elseif (!empty($result)) {
+                            }
+                            if (!empty($result)) {
                                 echo '<p class="text-green-500 text-sm mt-1">' . $result . '</p>';
                             }
                             ?>

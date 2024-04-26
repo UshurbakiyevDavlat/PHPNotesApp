@@ -3,24 +3,16 @@
 use Config\Config;
 use Database\Database;
 
-$heading = 'Note';
-$config = Config::getConfig();
-$currentUserId = 1;
-$method = $_SERVER['REQUEST_METHOD'];
-$note_id = $method === 'POST' ? $_POST['id'] : $_GET['id'];
-
-$note = getNote($config, $note_id);
-checkIfNoteBelongsToUser($note, $currentUserId);
-
-if ($method === 'POST') {
-    deleteNote($config, $note_id);
-    header('Location: /notes');
-    exit;
-}
-
-return view('notes/show', compact('heading', 'note'));
-
-function getNote($config, $id)
+/**
+ * Get note function
+ *
+ * @param array $config
+ * @param int $id
+ *
+ * @return mixed
+ * @throws Exception
+ */
+function getNote(array $config, int $id): mixed
 {
     $statement = 'SELECT * FROM notes WHERE id = :id';
     $queryParams = [
@@ -30,17 +22,30 @@ function getNote($config, $id)
     return Database::execute($config, $statement, $queryParams)->findOrFail();
 }
 
-function deleteNote($config, $id): void
-{
-    $statement = 'DELETE FROM notes WHERE id = :id';
-    $queryParams = [
-        'id' => $id
-    ];
-
-    Database::execute($config, $statement, $queryParams);
-}
-
+/**
+ * Check access function
+ *
+ * @param $note
+ * @param $currentUserId
+ *
+ * @return void
+ */
 function checkIfNoteBelongsToUser($note, $currentUserId): void
 {
     authorize((int)$note['user_id'] !== $currentUserId);
 }
+
+$heading = 'Note';
+
+$currentUserId = 1;
+$note_id = $_GET['id'];
+
+try {
+    $note = getNote(Config::getConfig()['database'], $note_id);
+} catch (Exception $e) {
+    die($e->getMessage());
+}
+
+checkIfNoteBelongsToUser($note, $currentUserId);
+
+return view('notes/show', compact('heading', 'note'));

@@ -4,7 +4,6 @@ use Config\Config;
 use Database\Database;
 
 $heading = 'Notes';
-$config = Config::getConfig();
 $currentUserId = 1;
 
 $queryParams = [
@@ -17,9 +16,12 @@ $fetchOptions = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // fetch option
 ];
 
-$db = new Database($config['database'], $statement, $fetchOptions);
-$connection = $db->query($queryParams);
-
-$notes = $connection->get(); // fetching all results in associative array format
+try {
+    $db = new Database(Config::getConfig()['database'], $statement, $fetchOptions);
+    $connection = $db->query($queryParams);
+    $notes = $connection->get();
+} catch (Exception $e) {
+    die($e->getMessage());
+}
 
 return view('notes/index', compact('heading', 'notes'));
