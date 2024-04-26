@@ -1,11 +1,12 @@
 <?php
 
-use Helpers\Router\Router;
+use Core\Router;
 
 const BASE_PATH = __DIR__ . '/../';
 
-require 'autoload.php';
-require BASE_PATH . 'helpers/functions.php';
+require '../autoload.php';
+require '../bootstrap.php';
+require BASE_PATH . 'core/functions.php';
 
 (new App\Controller\DotEnvEnvironment)->load(BASE_PATH);
 

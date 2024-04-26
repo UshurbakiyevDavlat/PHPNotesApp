@@ -6,11 +6,17 @@ use JetBrains\PhpStorm\NoReturn;
 /**
  * Die and dump function
  *
- * @param $value
+ * @param mixed $value
  * @return void
  */
-#[NoReturn] function dd($value): void
+#[NoReturn] function dd(mixed $value): void
 {
+    if (is_array($value)) {
+        foreach ($value as $item) {
+            var_dump($item);
+        }
+        die();
+    }
     var_dump($value);
     die();
 }
@@ -29,11 +35,11 @@ function urlIs($uri): bool
 /**
  * Authorize function
  *
- * @param $condition
+ * @param bool $condition
  * @param int $statusCode
  * @return void
  */
-function authorize($condition, int $statusCode = ResponseEnum::FORBIDDEN): void
+function authorize(bool $condition, int $statusCode = ResponseEnum::FORBIDDEN): void
 {
     if ($condition) {
         abort($statusCode);

@@ -1,25 +1,28 @@
 <?php
 
-use Config\Config;
-use Database\Database;
+namespace App\Controller\Notes;
+
+use Core\App;
+use Core\Database;
+use Exception;
 
 /**
  * Get note function
  *
- * @param array $config
  * @param int $id
  *
  * @return mixed
  * @throws Exception
  */
-function getNote(array $config, int $id): mixed
+function getNote(int $id): mixed
 {
     $statement = 'SELECT * FROM notes WHERE id = :id';
     $queryParams = [
         'id' => $id
     ];
 
-    return Database::execute($config, $statement, $queryParams)->findOrFail();
+    $db = App::resolve(Database::class);
+    return $db->query($statement, $queryParams)->findOrFail();
 }
 
 /**
@@ -41,7 +44,7 @@ $currentUserId = 1;
 $note_id = $_GET['id'];
 
 try {
-    $note = getNote(Config::getConfig()['database'], $note_id);
+    $note = getNote($note_id);
 } catch (Exception $e) {
     die($e->getMessage());
 }

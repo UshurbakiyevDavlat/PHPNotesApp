@@ -1,7 +1,7 @@
 <?php
 
-use Config\Config;
-use Database\Database;
+use Core\App;
+use Core\Database;
 
 $heading = 'Notes';
 $currentUserId = 1;
@@ -12,13 +12,9 @@ $queryParams = [
 
 $statement = 'SELECT * FROM notes where user_id = :user '; // write a sql query
 
-$fetchOptions = [
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // fetch option
-];
-
 try {
-    $db = new Database(Config::getConfig()['database'], $statement, $fetchOptions);
-    $connection = $db->query($queryParams);
+    $db = App::resolve(Database::class);
+    $connection = $db->query($statement, $queryParams);
     $notes = $connection->get();
 } catch (Exception $e) {
     die($e->getMessage());

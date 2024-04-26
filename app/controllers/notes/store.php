@@ -1,8 +1,8 @@
 <?php
 
-use Config\Config;
-use Database\Database;
-use Validator\Validator;
+use Core\App;
+use Core\Database;
+use Core\Validator;
 
 $body = $_POST['body'];
 
@@ -17,15 +17,10 @@ if (empty($errors['errors'])) {
     ];
 
     try {
-        $db = new Database(Config::getConfig()['database'], $statement);
-    } catch (Exception $e) {
-        die($e->getMessage());
-    }
-
-    try {
-        $db->query($query_params);
+        $db = App::resolve(Database::class);
+        $db->query($statement, $query_params);
         $result = 'Note created successfully.';
-    } catch (PDOException $e) {
+    } catch (Exception|PDOException $e) {
         die($e->getMessage());
     }
 

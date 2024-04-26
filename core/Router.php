@@ -1,6 +1,6 @@
 <?php
 
-namespace Helpers\Router;
+namespace Core;
 
 use App\Enums\MethodsEnum;
 
