@@ -45,6 +45,18 @@ class Router
     }
 
     /**
+     * Patch function
+     *
+     * @param string $uri
+     * @param string $controller
+     * @return void
+     */
+    public function patch(string $uri, string $controller): void
+    {
+        $this->add($uri, $controller, MethodsEnum::HTTP_PATCH);
+    }
+
+    /**
      * Delete function
      *
      * @param string $uri

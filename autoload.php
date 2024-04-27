@@ -8,6 +8,7 @@ spl_autoload_register(static function ($class) {
     $directories = [
         'app/controllers',
         'app/enums',
+        'app/services',
         'core',
         'routes',
         'config',
