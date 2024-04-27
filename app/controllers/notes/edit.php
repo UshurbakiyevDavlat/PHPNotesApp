@@ -9,6 +9,9 @@ try {
     die($e->getMessage());
 }
 
+$currentUserId = 1;
+$noteService->checkIfNoteBelongsToUser($note, $currentUserId);
+
 $body = $note['body'];
 
 return view('notes/edit',
