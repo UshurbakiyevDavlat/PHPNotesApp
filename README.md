@@ -1,8 +1,11 @@
-# Native_PHP_framework
+# NativePHP_NotesAPP
 
-Native mvc php framework project for my lessons.
+### Notes app with native php and docker for local environment.
 
 ## Using
 
+~~~
 - Clone this repository
-- Run php -S localhost:8000 -t public
+- If you have docker and docker-compose then use docker-compose build and docker-compose up -d
+- If you prefer execute on your local machine then use php -S localhost:8000(or whatever port you want) -t public
+~~~
