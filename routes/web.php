@@ -18,3 +18,6 @@ $router->post('/note-create', 'app/controllers/notes/store.php');
 $router->get('/note-edit', 'app/controllers/notes/edit.php');
 $router->patch('/note-edit', 'app/controllers/notes/update.php');
 
+$router->get('/registration','app/controllers/auth/register/create.php');
+$router->post('/registration','app/controllers/auth/register/store.php');
+

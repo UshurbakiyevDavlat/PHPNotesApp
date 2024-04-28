@@ -81,4 +81,14 @@ class Database
     {
         return $this->find()->fetchAll();
     }
+
+    /**
+     * First collection method
+     *
+     * @return bool|array
+     */
+    public function first(): bool|array
+    {
+        return $this->find()->fetch();
+    }
 }

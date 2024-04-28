@@ -41,7 +41,7 @@ class Validator
      * @param string $email
      * @return bool
      */
-    public function email(string $email): bool
+    public static function email(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }

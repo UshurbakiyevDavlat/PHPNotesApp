@@ -1,4 +1,5 @@
 <?php require(base_path('resources/views/partials/head.php')) ?>
+<?php require(base_path('resources/views/partials/banner.php')) ?>
 
 <main>
     <form class="m-6" method="POST">

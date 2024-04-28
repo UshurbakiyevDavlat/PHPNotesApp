@@ -9,14 +9,8 @@ use JetBrains\PhpStorm\NoReturn;
  * @param mixed $value
  * @return void
  */
-#[NoReturn] function dd(mixed $value): void
+#[NoReturn] function dd(mixed ...$value): void
 {
-    if (is_array($value)) {
-        foreach ($value as $item) {
-            var_dump($item);
-        }
-        die();
-    }
     var_dump($value);
     die();
 }
