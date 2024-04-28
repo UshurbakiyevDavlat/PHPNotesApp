@@ -25,5 +25,5 @@ if (empty($errors['errors'])) {
     }
 
 }
-
+//TODO need to make redirection to notes index, with flash messages functionality
 return view('notes/create', compact('errors', 'body', 'result'));

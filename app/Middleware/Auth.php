@@ -1,0 +1,18 @@
+<?php
+
+class Auth
+{
+    /**
+     * TODO need to make interface for all middlewares contraction
+     * Handle method of Auth middleware
+     *
+     * @return void
+     */
+    public function handle(): void
+    {
+        if (!($_SESSION['user'] ?? false)) {
+            header('Location: /');
+            die();
+        }
+    }
+}

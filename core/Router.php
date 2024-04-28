@@ -3,73 +3,74 @@
 namespace Core;
 
 use App\Enums\MethodsEnum;
+use Middleware;
 
 class Router
 {
     protected array $routes = [];
 
     /**
-     * Get function
+     * Get method
      *
      * @param string $uri
      * @param string $controller
-     * @return void
+     * @return Router
      */
-    public function get(string $uri, string $controller): void
+    public function get(string $uri, string $controller): Router
     {
-        $this->add($uri, $controller, MethodsEnum::HTTP_GET);
+        return $this->add($uri, $controller, MethodsEnum::HTTP_GET);
     }
 
     /**
-     * Post function
+     * Post method
      *
      * @param string $uri
      * @param string $controller
-     * @return void
+     * @return Router
      */
-    public function post(string $uri, string $controller): void
+    public function post(string $uri, string $controller): Router
     {
-        $this->add($uri, $controller, MethodsEnum::HTTP_POST);
+        return $this->add($uri, $controller, MethodsEnum::HTTP_POST);
     }
 
     /**
-     * Put function
+     * Put method
      *
      * @param string $uri
      * @param string $controller
-     * @return void
+     * @return Router
      */
-    public function put(string $uri, string $controller): void
+    public function put(string $uri, string $controller): Router
     {
-        $this->add($uri, $controller, MethodsEnum::HTTP_PUT);
+        return $this->add($uri, $controller, MethodsEnum::HTTP_PUT);
     }
 
     /**
-     * Patch function
+     * Patch method
      *
      * @param string $uri
      * @param string $controller
-     * @return void
+     * @return Router
      */
-    public function patch(string $uri, string $controller): void
+    public function patch(string $uri, string $controller): Router
     {
-        $this->add($uri, $controller, MethodsEnum::HTTP_PATCH);
+        return $this->add($uri, $controller, MethodsEnum::HTTP_PATCH);
     }
 
     /**
-     * Delete function
+     * Delete method
      *
      * @param string $uri
      * @param string $controller
-     * @return void
+     * @return Router
      */
-    public function delete(string $uri, string $controller): void
+    public function delete(string $uri, string $controller): Router
     {
-        $this->add($uri, $controller, MethodsEnum::HTTP_DELETE);
+        return $this->add($uri, $controller, MethodsEnum::HTTP_DELETE);
     }
 
     /**
-     * Require route function
+     * Require route method
      *
      * @param string $uri
      * @param string $method
@@ -83,6 +84,15 @@ class Router
                 &&
                 $route['method'] === $method
             ) {
+
+                if ($route['middleware']) {
+                    try {
+                        Middleware::resolve($route['middleware']);
+                    } catch (\Exception $e) {
+                        die($e->getMessage());
+                    }
+                }
+
                 $controller = $route['controller'];
                 require base_path($controller);
                 break;
@@ -91,15 +101,35 @@ class Router
     }
 
     /**
-     * Add route function
+     * Add route method
      *
      * @param string $uri
      * @param string $controller
      * @param string $method
+     * @return Router
+     */
+    private function add(string $uri, string $controller, string $method): Router
+    {
+        $middleware = null;
+
+        $this->routes[] = compact(
+            'uri',
+            'controller',
+            'method',
+            'middleware',
+        );
+
+        return $this;
+    }
+
+    /**
+     * Method for restrict route with middleware
+     *
+     * @param string $key
      * @return void
      */
-    private function add(string $uri, string $controller, string $method): void
+    public function only(string $key): void
     {
-        $this->routes[] = compact('uri', 'controller', 'method');
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
     }
 }
