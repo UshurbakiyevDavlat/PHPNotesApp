@@ -5,6 +5,7 @@ namespace Core;
 class Validator
 {
     /**
+     * TODO refactor validator functionality
      * Validate string rule
      *
      * @param string $str

@@ -24,3 +24,6 @@ $router->patch('/note-edit', 'app/controllers/notes/update.php')->only('auth');
 $router->get('/registration','app/controllers/auth/register/create.php')->only('guest');
 $router->post('/registration','app/controllers/auth/register/store.php')->only('guest');
 
+$router->get('/login', 'app/controllers/auth/session/create.php')->only('guest');
+$router->post('/session', 'app/controllers/auth/session/store.php')->only('guest');
+$router->delete('/session', 'app/controllers/auth/session/destroy.php')->only('auth');

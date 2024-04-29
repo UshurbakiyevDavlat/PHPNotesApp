@@ -39,7 +39,7 @@ $user = $db->query('SELECT * FROM users WHERE email = :email', ['email' => $emai
 
 if ($user) {
     //if yes then send him to login page
-    header('Location: /'); //TODO redirect to login
+    header('Location: /login'); //TODO redirect to login
     exit();
 } else {
 //if no then create account, login him and send to index page
@@ -50,9 +50,7 @@ if ($user) {
         ],
     );
 
-    $_SESSION['user'] = [
-        'email' => $email,
-    ];
+    login($email);
 
     header('Location: /');
     exit();

@@ -87,3 +87,40 @@ function env(string $variable, string $default): bool|array|string
 {
     return getenv($variable) ?? $default;
 }
+
+/**
+ * Login function
+ *
+ * @param string $email
+ * @return void
+ */
+function login(string $email): void
+{
+    $_SESSION['user'] = [
+        'email' => $email,
+    ];
+
+    session_regenerate_id();
+}
+
+/**
+ * Logout function
+ *
+ * @return void
+ */
+function logout(): void
+{
+    $_SESSION['user'] = [];
+
+    $params = session_get_cookie_params();
+
+    setcookie(
+        'PHPSESSID',
+        '',
+        time() - 3600,
+        $params['path'],
+        $params['domain'],
+        $params['secure'],
+        $params['httponly'],
+    );
+}
