@@ -9,11 +9,16 @@ $body = $_POST['body'];
 $result = null;
 $errors = Validator::string($body, 10, 1000);
 $statement = 'INSERT INTO notes (body, user_id) VALUES (:body, :user_id)';
+$user = (new AuthService())->getAuthenticatedUser();
+
+if (!$user) {
+    die('User in your session is not legit in database.');
+}
 
 if (empty($errors['errors'])) {
     $query_params = [
         'body' => $body,
-        'user_id' => 1
+        'user_id' => $user['id'],
     ];
 
     try {
