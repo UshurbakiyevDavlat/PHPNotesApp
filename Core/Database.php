@@ -15,10 +15,10 @@ class Database
      * @throws Exception
      */
     public function __construct(
-        $config,
-        $fetchOptions = null,
-        $username = 'root',
-        $password = 'root',
+        array  $config,
+        array  $fetchOptions = null,
+        string $username = 'root',
+        string $password = 'root',
     )
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql
@@ -59,9 +59,9 @@ class Database
     /**
      * Find record or fail
      *
-     * @return mixed
+     * @return array
      */
-    public function findOrFail(): mixed
+    public function findOrFail(): array
     {
         $result = $this->prepared->fetch();
 

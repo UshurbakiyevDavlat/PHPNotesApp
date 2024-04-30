@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
+namespace App\Services;
+
 use Core\App;
 use Core\Database;
+use Exception;
 
 class NoteService
 {
@@ -12,10 +15,10 @@ class NoteService
      *
      * @param int $id
      *
-     * @return mixed
+     * @return array
      * @throws Exception
      */
-    public function getNote(int $id): mixed
+    public function getNote(int $id): array
     {
         $statement = 'SELECT * FROM notes WHERE id = :id';
         $queryParams = [
@@ -29,12 +32,12 @@ class NoteService
     /**
      * Check access method
      *
-     * @param $note
-     * @param $currentUserId
+     * @param array $note
+     * @param int $currentUserId
      *
      * @return void
      */
-    public function checkIfNoteBelongsToUser($note, $currentUserId): void
+    public function checkIfNoteBelongsToUser(array $note, int $currentUserId): void
     {
         authorize((int)$note['user_id'] !== $currentUserId);
     }

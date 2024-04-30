@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\AuthService;
+use App\Services\NoteService;
 use Core\App;
 use Core\Database;
 use Core\Validator;
@@ -14,8 +16,8 @@ try {
     die($e->getMessage());
 }
 
-$currentUserId = 1;
-$noteService->checkIfNoteBelongsToUser($note, $currentUserId);
+$currentUser = (new AuthService())->getAuthenticatedUser();
+$noteService->checkIfNoteBelongsToUser($note, $currentUser['id']);
 
 $result = null;
 $errors = Validator::string($body, 10, 1000);
@@ -25,7 +27,7 @@ $query_params = [
     'id' => $note_id
 ];
 
-if (empty($errors['errors'])) {
+if (empty($errors)) {
     try {
         $db = App::resolve(Database::class);
         $db->query($statement, $query_params);

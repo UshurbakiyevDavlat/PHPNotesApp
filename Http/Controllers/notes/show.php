@@ -2,14 +2,15 @@
 
 namespace App\Controller\Notes;
 
+use App\Services\AuthService;
 use Exception;
-use NoteService;
+use App\Services\NoteService;
 
 $noteService = new NoteService();
 
 $heading = 'Note';
 
-$currentUserId = 1;
+$currentUser = (new AuthService())->getAuthenticatedUser();
 $note_id = $_GET['id'];
 
 try {
@@ -18,6 +19,6 @@ try {
     die($e->getMessage());
 }
 
-$noteService->checkIfNoteBelongsToUser($note, $currentUserId);
+$noteService->checkIfNoteBelongsToUser($note, $currentUser['id']);
 
 return view('notes/show', compact('heading', 'note'));

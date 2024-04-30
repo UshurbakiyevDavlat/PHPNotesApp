@@ -3,7 +3,7 @@
 namespace Core;
 
 use App\Enums\MethodsEnum;
-use Middleware;
+use App\Middleware\Middleware;
 
 class Router
 {
@@ -94,7 +94,7 @@ class Router
                 }
 
                 $controller = $route['controller'];
-                require base_path($controller);
+                require base_path('Http/Controllers' . $controller);
                 break;
             }
         }

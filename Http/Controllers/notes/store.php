@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\AuthService;
 use Core\App;
 use Core\Database;
 use Core\Validator;
@@ -15,7 +16,7 @@ if (!$user) {
     die('User in your session is not legit in database.');
 }
 
-if (empty($errors['errors'])) {
+if (empty($errors)) {
     $query_params = [
         'body' => $body,
         'user_id' => $user['id'],

@@ -8,9 +8,9 @@ const BASE_PATH = __DIR__ . '/../';
 
 require '../autoload.php';
 require '../bootstrap.php';
-require BASE_PATH . 'core/functions.php';
+require BASE_PATH . 'Core/functions.php';
 
-(new App\Controller\DotEnvEnvironment)->load(BASE_PATH);
+(new Http\Controllers\DotEnvEnvironment)->load(BASE_PATH);
 
 $uri = trim(
     str_replace(

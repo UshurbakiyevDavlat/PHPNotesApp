@@ -1,5 +1,8 @@
 <?php
 
+use App\Services\AuthService;
+use App\Services\NoteService;
+
 $noteService = new NoteService();
 $note_id = $_GET['id'];
 
@@ -9,8 +12,8 @@ try {
     die($e->getMessage());
 }
 
-$currentUserId = 1;
-$noteService->checkIfNoteBelongsToUser($note, $currentUserId);
+$currentUser = (new AuthService())->getAuthenticatedUser();
+$noteService->checkIfNoteBelongsToUser($note, $currentUser['id']);
 
 $body = $note['body'];
 

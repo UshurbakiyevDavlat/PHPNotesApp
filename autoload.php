@@ -6,13 +6,14 @@ spl_autoload_register(static function ($class) {
 
     // TODO here you need to consider what to do with nest folders, it can't be like that
     $directories = [
-        'app/controllers',
-        'app/controllers/register',
-        'app/controllers/session',
-        'app/middleware',
-        'app/enums',
-        'app/services',
-        'core',
+        'Http/Controllers',
+        'Http/Controllers/register',
+        'Http/Controllers/session',
+        'Http/Forms',
+        'app/Middleware',
+        'app/Enums',
+        'app/Services',
+        'Core',
         'routes',
         'config',
     ];

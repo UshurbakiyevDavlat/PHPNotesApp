@@ -1,13 +1,14 @@
 <?php
 
+use App\Services\AuthService;
 use Core\App;
 use Core\Database;
 
 $heading = 'Notes';
-$currentUserId = 1;
+$currentUser = (new AuthService())->getAuthenticatedUser();
 
 $queryParams = [
-    'user' => $currentUserId
+    'user' => $currentUser['id'],
 ];
 
 $statement = 'SELECT * FROM notes where user_id = :user '; // write a sql query

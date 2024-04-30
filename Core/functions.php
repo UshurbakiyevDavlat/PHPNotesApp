@@ -18,10 +18,10 @@ use JetBrains\PhpStorm\NoReturn;
 /**
  * Check url function
  *
- * @param $uri
+ * @param string $uri
  * @return bool
  */
-function urlIs($uri): bool
+function urlIs(string $uri): bool
 {
     return $uri === $_SERVER['REQUEST_URI'];
 }
@@ -66,11 +66,11 @@ function base_path(string $path = ''): string
 /**
  * View template function
  *
- * @param $view
+ * @param string $view
  * @param array $data
  * @return mixed
  */
-function view($view, array $data = []): mixed
+function view(string $view, array $data = []): mixed
 {
     extract($data, EXTR_SKIP);
     return require base_path("resources/views/{$view}.view.php");

@@ -29,8 +29,8 @@
                     echo '<p class="text-red-500 text-sm mt-1">' . $errors['password'] . '</p>';
                 }?>
             </div>
-            <?php if (!empty($errors['additional'])) {
-                echo '<p class="text-red-500 text-sm mt-1">' . $errors['additional'] . '</p>';
+            <?php if (!empty($errors['user_not_found'])) {
+                echo '<p class="text-red-500 text-sm mt-1">' . $errors['user_not_found'] . '</p>';
             }?>
             <div>
                 <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Log in</button>

@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
+namespace App\Services;
+
 use Core\App;
 use Core\Database;
+use Exception;
 
 class AuthService
 {
