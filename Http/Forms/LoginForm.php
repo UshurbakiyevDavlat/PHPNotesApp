@@ -4,33 +4,49 @@ declare(strict_types=1);
 
 namespace Http\Forms;
 
+use Core\ValidationException;
 use Core\Validator;
 
 class LoginForm
 {
     protected array $errors = [];
 
-    /**
-     * Login validate method
-     *
-     * @param string $email
-     * @param string $password
-     * @return void
-     */
-    public function validate(string $email, string $password): void
+    public function __construct(public $attributes)
     {
-        $emailValidator = Validator::email($email);
-        $passwordValidator = Validator::string($password);
+        $emailValidator = Validator::email($this->attributes['email']);
+        $passwordValidator = Validator::string($this->attributes['password']);
 
         if (!$emailValidator) {
-            //validate email
             $this->errors['email'] = 'Please provide valid email';
         }
 
         if (!empty($passwordValidator)) {
-            //validate password
             $this->errors['password'] = 'Please provide valid password';
         }
+    }
+
+    /**
+     * Login validate method
+     *
+     * @param array $attributes
+     * @return ValidationException|LoginForm
+     * @throws ValidationException
+     */
+    public static function validate(array $attributes): ValidationException|LoginForm
+    {
+        $instance = new static($attributes);
+        return $instance->failed() ? $instance->throw() : $instance;
+    }
+
+    /**
+     * Delegate for validation exception class
+     *
+     * @return ValidationException
+     * @throws ValidationException
+     */
+    public function throw(): ValidationException
+    {
+        return ValidationException::throw($this->errors(), $this->attributes);
     }
 
     /**
@@ -44,14 +60,26 @@ class LoginForm
     }
 
     /**
+     * Check if validation failed or not
+     *
+     * @return bool
+     */
+    public function failed(): bool
+    {
+        return (bool)count($this->errors);
+    }
+
+    /**
      * Addition error to errors scope
      *
      * @param string $field
      * @param string $message
-     * @return void
+     * @return LoginForm
      */
-    public function error(string $field, string $message): void
+    public function error(string $field, string $message): static
     {
         $this->errors[$field] = $message;
+
+        return $this;
     }
 }

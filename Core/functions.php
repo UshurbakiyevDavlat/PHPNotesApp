@@ -137,3 +137,11 @@ function old(string $key, string $default = ''): mixed
 {
     return Session::get('old')[$key] ?? $default;
 }
+
+/**
+ * @return mixed
+ */
+function previousUrl(): mixed
+{
+    return $_SERVER['HTTP_REFERER'];
+}
