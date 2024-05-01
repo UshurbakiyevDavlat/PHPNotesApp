@@ -124,3 +124,15 @@ function logout(): void
         $params['httponly'],
     );
 }
+
+/**
+ * Redirect function
+ *
+ * @param string $path
+ * @return void
+ */
+#[NoReturn] function redirect(string $path): void
+{
+    header("Location: {$path}");
+    exit();
+}

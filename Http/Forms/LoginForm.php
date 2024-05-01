@@ -42,4 +42,16 @@ class LoginForm
     {
         return $this->errors;
     }
+
+    /**
+     * Addition error to errors scope
+     *
+     * @param string $field
+     * @param string $message
+     * @return void
+     */
+    public function error(string $field, string $message): void
+    {
+        $this->errors[$field] = $message;
+    }
 }
