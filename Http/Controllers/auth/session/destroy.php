@@ -2,5 +2,4 @@
 
 logout();
 
-header('Location: /');
-exit();
+redirect('/');

@@ -40,5 +40,5 @@ try {
 } catch (Exception $e) {
     die($e->getMessage());
 }
-header('Location: /notes');
-exit;
+
+redirect('/notes');
