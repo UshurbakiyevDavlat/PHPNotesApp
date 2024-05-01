@@ -3,6 +3,7 @@
 session_start();
 
 use Core\Router;
+use Core\Session;
 
 const BASE_PATH = __DIR__ . '/../';
 
@@ -28,6 +29,7 @@ require base_path('routes/web.php');
 
 try {
     $router->route($uri, $method);
+    Session::unflash();
 } catch (Exception $exception) {
     error_reporting(1);
     die($exception->getMessage());
