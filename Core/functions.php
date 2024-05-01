@@ -125,3 +125,15 @@ function logout(): void
     header("Location: {$path}");
     exit();
 }
+
+/**
+ * Return old session value
+ *
+ * @param string $key
+ * @param string $default
+ * @return mixed|string
+ */
+function old(string $key, string $default = ''): mixed
+{
+    return Session::get('old')[$key] ?? $default;
+}

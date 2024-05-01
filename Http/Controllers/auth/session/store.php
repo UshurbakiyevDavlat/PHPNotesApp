@@ -22,4 +22,10 @@ $form->error(
 );
 
 Session::flash('errors', $form->errors());
+Session::flash('old',
+    [
+        'email' => $email,
+    ]
+);
+
 redirect('/login');
