@@ -1,9 +1,9 @@
 <?php
 
+use app\Core\App;
+use app\Core\Database;
 use App\Services\AuthService;
 use App\Services\NoteService;
-use Core\App;
-use Core\Database;
 
 /**
  * Delete note function

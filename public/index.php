@@ -1,18 +1,19 @@
 <?php
 
-session_start();
-
-use Core\Router;
-use Core\Session;
-use Core\ValidationException;
+use App\Core\Router;
+use App\Core\Session;
+use App\Core\ValidationException;
+use App\Http\Controllers\DotEnvEnvironment;
 
 const BASE_PATH = __DIR__ . '/../';
 
-require '../autoload.php';
-require '../bootstrap.php';
-require BASE_PATH . 'Core/functions.php';
+require BASE_PATH . '/vendor/autoload.php';
+require BASE_PATH . '/bootstrap.php';
+require BASE_PATH . 'app/Core/functions.php';
 
-(new Http\Controllers\DotEnvEnvironment)->load(BASE_PATH);
+session_start();
+
+(new DotEnvEnvironment)->load(BASE_PATH);
 
 $uri = trim(
     str_replace(

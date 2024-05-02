@@ -1,0 +1,17 @@
+{
+    "name": "davlatbekushurbakiyev/note-php-app",
+    "description": "Note app with core php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ushurbakiyev Davlatbek",
+            "email": "dushurbakiev@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

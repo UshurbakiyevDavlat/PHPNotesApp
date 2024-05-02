@@ -1,10 +1,10 @@
 <?php
 
+use App\Core\App;
+use App\Core\Database;
+use App\Core\Validator;
 use App\Services\AuthService;
 use App\Services\NoteService;
-use Core\App;
-use Core\Database;
-use Core\Validator;
 
 $noteService = new NoteService();
 $body = $_POST['body'];

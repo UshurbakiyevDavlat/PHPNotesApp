@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Http\Forms;
+namespace App\Http\Forms;
 
-use Core\ValidationException;
-use Core\Validator;
+use App\Core\ValidationException;
+use App\Core\Validator;
 
 class LoginForm
 {

@@ -1,7 +1,7 @@
 <?php
 
+use App\Core\Session;
 use App\Enums\ResponseEnum;
-use Core\Session;
 use JetBrains\PhpStorm\NoReturn;
 
 /**

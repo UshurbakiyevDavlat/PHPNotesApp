@@ -1,7 +1,7 @@
 <?php
 
-use Core\Authenticator;
-use Http\Forms\LoginForm;
+use App\Core\Authenticator;
+use App\Http\Forms\LoginForm;
 
 $form = LoginForm::validate($attributes = [ // catching at index.php level
     'email' => $_POST['email'],

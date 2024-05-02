@@ -1,9 +1,9 @@
 <?php
 
-use Core\App;
-use Core\Database;
-use Core\Session;
-use Http\Forms\RegisterForm;
+use app\Core\App;
+use app\Core\Database;
+use app\Core\Session;
+use app\Http\Forms\RegisterForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];

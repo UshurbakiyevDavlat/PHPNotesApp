@@ -1,8 +1,8 @@
 <?php
 
+use App\Core\App;
+use App\Core\Database;
 use App\Services\AuthService;
-use Core\App;
-use Core\Database;
 
 $heading = 'Notes';
 $currentUser = (new AuthService())->getAuthenticatedUser();

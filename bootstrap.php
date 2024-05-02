@@ -1,9 +1,9 @@
 <?php
 
-use Config\Config;
-use Core\App;
-use Core\Container;
-use Core\Database;
+use App\config\Config;
+use App\Core\App;
+use App\Core\Container;
+use App\Core\Database;
 
 $container = new Container();
 

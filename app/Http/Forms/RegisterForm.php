@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Http\Forms;
+namespace App\Http\Forms;
 
-use Core\Validator;
+use App\Core\Validator;
 
 class RegisterForm
 {

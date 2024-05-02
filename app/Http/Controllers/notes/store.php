@@ -1,9 +1,9 @@
 <?php
 
+use App\Core\App;
+use App\Core\Database;
+use App\Core\Validator;
 use App\Services\AuthService;
-use Core\App;
-use Core\Database;
-use Core\Validator;
 
 $body = $_POST['body'];
 

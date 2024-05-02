@@ -25,6 +25,15 @@ COPY /docker/php/conf.d/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
 # Set the working directory in the container
 WORKDIR /var/www/html
 
+# Copy the composer files into the container
+COPY composer.json composer.lock ./
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install project dependencies
+RUN composer install --no-scripts
+
 # Copy the rest of the application code into the container
 COPY . .
 
