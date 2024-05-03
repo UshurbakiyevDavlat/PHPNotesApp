@@ -19,7 +19,7 @@ class Validator
         $result = [];
 
         if ($str === '') {
-            $result['errors'][] = 'The note body is required.';
+            $result['errors'][] = 'The body is required.';
         }
 
         if (!(strlen($str) >= $min
