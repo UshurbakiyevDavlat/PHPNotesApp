@@ -8,10 +8,20 @@
             "email": "dushurbakiev@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "illuminate/collections": "^11.6"
+    },
     "autoload": {
         "psr-4": {
             "App\\": "app/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.34"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }
