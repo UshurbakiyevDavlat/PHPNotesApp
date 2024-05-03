@@ -16,9 +16,9 @@ class Database
      */
     public function __construct(
         array  $config,
-        array  $fetchOptions = null,
         string $username = 'root',
         string $password = 'root',
+        array  $fetchOptions = null,
     )
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';'); // data to connect for mysql

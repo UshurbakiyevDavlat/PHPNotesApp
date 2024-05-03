@@ -51,4 +51,17 @@ class Validator
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
+
+    /**
+     * Validates first num greater than second,
+     * just testing tdd approach, minimum sense here
+     *
+     * @param int $first
+     * @param int $second
+     * @return bool
+     */
+    public static function greaterThan(int $first, int $second): bool
+    {
+        return $first > $second;
+    }
 }

@@ -1,9 +1,10 @@
 <?php
 
-use app\Core\App;
-use app\Core\Database;
-use app\Core\Session;
-use app\Http\Forms\RegisterForm;
+use App\Core\App;
+use App\Core\Authenticator;
+use App\Core\Database;
+use App\Core\Session;
+use App\Http\Forms\RegisterForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -31,7 +32,7 @@ if (empty($form->errors())) {
         ],
     );
 
-    login($email);
+    (new Authenticator())->login($email);
     redirect('/');
 }
 

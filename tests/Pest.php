@@ -24,6 +24,8 @@
 |
 */
 
+use App\Http\Controllers\DotEnvEnvironment;
+
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
@@ -39,7 +41,14 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function init(): void
 {
-    // ..
+    define("BASE_PATH", __DIR__ . '/../');
+
+    require BASE_PATH . '/vendor/autoload.php';
+    require BASE_PATH . '/bootstrap.php';
+    require BASE_PATH . 'app/Core/functions.php';
+
+    session_start();
+    (new DotEnvEnvironment)->load(BASE_PATH);
 }

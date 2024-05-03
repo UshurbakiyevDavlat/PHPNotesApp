@@ -31,11 +31,36 @@ class Authenticator
 
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                login($email);
+                self::login($email);
                 return true;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Login function
+     *
+     * @param string $email
+     * @return void
+     */
+    public function login(string $email): void
+    {
+        $_SESSION['user'] = [
+            'email' => $email,
+        ];
+
+        session_regenerate_id();
+    }
+
+    /**
+     * Logout function
+     *
+     * @return void
+     */
+    public function logout(): void
+    {
+        Session::destroy();
     }
 }

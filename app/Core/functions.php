@@ -82,36 +82,12 @@ function view(string $view, array $data = []): mixed
  *
  * @param string $variable
  * @param string $default
- * @return bool|array|string
+ * @return array|string
  */
-function env(string $variable, string $default): bool|array|string
+function env(string $variable, string $default): array|string
 {
-    return getenv($variable) ?? $default;
-}
-
-/**
- * Login function
- *
- * @param string $email
- * @return void
- */
-function login(string $email): void
-{
-    $_SESSION['user'] = [
-        'email' => $email,
-    ];
-
-    session_regenerate_id();
-}
-
-/**
- * Logout function
- *
- * @return void
- */
-function logout(): void
-{
-    Session::destroy();
+    $env = getenv($variable);
+    return !empty($env) ? $env : $default;
 }
 
 /**

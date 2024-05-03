@@ -12,3 +12,8 @@ it('validates email request data', function () {
     expect(Validator::email('dushurbakiev@gmail.com'))->toBeTrue()
         ->and(Validator::email('dava'))->toBeFalse();
 });
+
+it('validated greater than method', function () {
+    expect(Validator::greaterThan(11, 10))->toBeTrue()
+        ->and(Validator::greaterThan(10, 100))->toBeFalse();
+});
