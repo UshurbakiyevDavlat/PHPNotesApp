@@ -9,3 +9,8 @@ it('can login', function () {
     (new Authenticator())->login($email);
     expect($_SESSION['user']['email'])->toEqual($email);
 });
+
+it('can logout', function () {
+    (new Authenticator())->logout();
+    expect($_SESSION['user'] ?? null)->toBeNull();
+});
